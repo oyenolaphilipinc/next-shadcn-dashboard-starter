@@ -42,7 +42,7 @@ export default function ImagesPage() {
             >
               <CardContent className="p-2">
                 <Image
-                  src={`/uploads/${image}`}
+                  src={image}
                   alt={image}
                   width={300}
                   height={200}
@@ -51,7 +51,7 @@ export default function ImagesPage() {
                 />
                 <div className="flex justify-between items-center mt-3">
                   <span className="text-sm text-gray-600 truncate w-3/4">{image}</span>
-                  <a href={`/uploads/${image}`} download>
+                  <a href={image} download>
                     <Button size="icon" variant="outline" className="rounded-full">
                       <Download className="h-5 w-5" />
                     </Button>
