@@ -3,18 +3,20 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'utfs.io',
-        port: ''
+        protocol: "https",
+        hostname: "utfs.io",
       },
       {
-        protocol: 'https',
-        hostname: 'api.slingacademy.com',
-        port: ''
-      }
-    ]
+        protocol: "https",
+        hostname: "api.slingacademy.com",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com", // ✅ Add Cloudinary
+      },
+    ],
   },
-  transpilePackages: ['geist']
+  transpilePackages: ["geist"],
 };
 
 module.exports = nextConfig;
