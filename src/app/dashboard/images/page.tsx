@@ -36,7 +36,7 @@ export default function ImagesPage() {
           <p className="text-lg">Loading images...</p>
         </div>
       ) : images.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-5xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-5xl mb-12 md:mb-0">
           {images.map((image) => (
             <Dialog key={image}>
               <DialogTrigger asChild>
