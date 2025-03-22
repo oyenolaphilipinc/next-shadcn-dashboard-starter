@@ -55,7 +55,7 @@ export default function ImagesPage() {
                     />
                     <div className="flex justify-between items-center mt-3">
                       <span className="text-sm text-gray-600 truncate w-3/4">{image}</span>
-                      <a href={image} download>
+                      <a href={`${image.replace("/upload/", "/upload/fl_attachment/")}`} download>
                         <Button size="icon" variant="outline" className="rounded-full">
                           <Download className="h-5 w-5" />
                         </Button>
