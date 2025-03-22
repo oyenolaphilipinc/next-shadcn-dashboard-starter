@@ -10,23 +10,27 @@ cloudinary.config({
 export async function POST(req: Request) {
   try {
     const formData = await req.formData();
-    const file = formData.get("image") as File | null;
+    const files = formData.getAll("images") as File[];
 
-    if (!file) {
-      return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
+    if (!files.length) {
+      return NextResponse.json({ error: "No files uploaded" }, { status: 400 });
     }
 
-    // Convert file to base64
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    const base64 = `data:${file.type};base64,${buffer.toString("base64")}`;
+    const uploadPromises = files.map(async (file) => {
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+      const base64 = `data:${file.type};base64,${buffer.toString("base64")}`;
 
-    // Upload to Cloudinary
-    const uploadRes = await cloudinary.uploader.upload(base64, {
-      folder: "uploads",
+      const uploadRes = await cloudinary.uploader.upload(base64, {
+        folder: "uploads",
+      });
+
+      return uploadRes.secure_url;
     });
 
-    return NextResponse.json({ message: "File uploaded successfully", url: uploadRes.secure_url });
+    const uploadedUrls = await Promise.all(uploadPromises);
+
+    return NextResponse.json({ message: "Files uploaded successfully", urls: uploadedUrls });
   } catch (error) {
     return NextResponse.json({ error: "Upload failed" }, { status: 500 });
   }
