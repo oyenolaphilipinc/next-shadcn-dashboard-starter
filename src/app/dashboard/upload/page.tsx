@@ -110,7 +110,7 @@ export default function UploadPage() {
 
             <Button
               type="submit"
-              className="w-full flex items-center justify-center bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600"
+              className="w-full flex items-center justify-center bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 text-gray-100"
               disabled={loading || selectedFiles.length === 0}
             >
               {loading ? <Loader2 className="animate-spin h-5 w-5 mr-2" /> : "Upload Images"}
